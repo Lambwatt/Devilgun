@@ -4,6 +4,7 @@ using System.Collections;
 public class generateLevel : MonoBehaviour {
 
 	int[,] level = new int[4,4];
+	Transform[,] roomObjects = new Transform[4,4];
 	int x;
 	int y = 0;
 
@@ -12,12 +13,12 @@ public class generateLevel : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		x = (int)Mathf.Floor(Random.value*4);
-		level[x,y] = 1;
+		//level[x,y] = 1;
 		int start_x = x;
 		int last_x = x;
 		int last_y = y;
 
-		Debug.Log ("starting at ["+x+","+y+"]");
+		//Debug.Log ("starting at ["+x+","+y+"]");
 		int n;
 		bool valid;
 		while(y < 4){
@@ -27,16 +28,16 @@ public class generateLevel : MonoBehaviour {
 				if(n == 0 || n == 1){
 					if(x-1>=0 && level[x-1,y] == 0){
 
-						Debug.Log ("left");
-						Debug.Log("nextSlot = "+level[x-1,y]);
+						//Debug.Log ("left");
+						//Debug.Log("nextSlot = "+level[x-1,y]);
 						x-=1;
 
 						valid = true;
 					}
 				}else if(n == 2 || n == 3){
 					if(x+1<4 && level[x+1,y] == 0){
-						Debug.Log ("right");
-						Debug.Log("nextSlot = "+level[x+1,y]);
+						//Debug.Log ("right");
+						//Debug.Log("nextSlot = "+level[x+1,y]);
 						x+=1;
 
 						valid = true;
@@ -44,7 +45,7 @@ public class generateLevel : MonoBehaviour {
 				}else{
 					if(y+1<5){
 						y+=1;
-						Debug.Log ("down");
+						//Debug.Log ("down");
 						valid = true;
 					}
 				}
@@ -53,7 +54,7 @@ public class generateLevel : MonoBehaviour {
 			if(n<4){
 				float fl = Mathf.Floor(Random.value*3)+1;
 				level[last_x, last_y] = (int)fl;
-				Debug.Log(fl+":"+level[last_x, last_y]);
+				//Debug.Log(fl+":"+level[last_x, last_y]);
 				last_x = x;
 
 			}else{
@@ -61,16 +62,40 @@ public class generateLevel : MonoBehaviour {
 				last_y = y;
 			}
 
+			level[start_x, 0] = 1;
+			//level[last_x, last_y] = 1;
+
 		}
 
 
 		for(int w = 0; w < 4; w++){
 			for(int h = 0; h < 4; h++){
-				Debug.Log ("converting room type "+level[w,h]+"int "+rooms[level[w,h]]);
-				Instantiate(Resources.Load(rooms[level[w,h]]), new Vector3(w*100, h*-80), Quaternion.identity);
+				//Debug.Log ("converting room type "+level[w,h]+"int "+rooms[level[w,h]]);
+				//int num = ;
+				//Debug.Log ("num = "+num);
+				roomObjects[w,h] = (Instantiate(Resources.Load(rooms[level[w,h]]), new Vector3(w*100, h*-80), Quaternion.identity)as GameObject).transform as Transform;
+				//Debug.Log ("room "+w+", "+h+": "+roomObjects[w,h]);
 			}
 		}
+		//Debug.Log(roomObjects[start_x, 0]);
+		SpawnPlayer spawner = roomObjects[start_x, 0].GetComponent<SpawnPlayer>();
+		//Debug.Log (spawner);
+		spawner.spawn();
 
-		//Instantiate(Resources.Load("player"))
+//		for( w = -1; w<100; w++){
+//			Instantiate(Resources.Load("block"), new Vector3(w*10, 0), Quaternion.identity);
+//		}
+//
+//		for( w = -1; w<100; w++){
+//			Instantiate(Resources.Load("block"), new Vector3(w*10, -80*4), Quaternion.identity);
+//		}
+//
+//		for( h = -1; w<100; w++){
+//			Instantiate(Resources.Load("block"), new Vector3(w*10, 0), Quaternion.identity);
+//		}
+//		
+//		for( w = -1; w<100; w++){
+//			Instantiate(Resources.Load("block"), new Vector3(w*10, -80*4), Quaternion.identity);
+//		}
 	}
 }

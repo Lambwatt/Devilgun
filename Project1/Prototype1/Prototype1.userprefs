@@ -1,12 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Jump.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/FollowPlayer.cs">
     <Files>
-      <File FileName="Assets/generateFloor.cs" Line="1" Column="1" />
-      <File FileName="Assets/moveLeftOrRight.cs" Line="1" Column="1" />
-      <File FileName="Assets/Jump.cs" Line="42" Column="28" />
-      <File FileName="Assets/DetectGround.cs" Line="1" Column="1" />
-      <File FileName="Assets/FollowPlayer.cs" Line="1" Column="1" />
+      <File FileName="Assets/generateLevel.cs" Line="22" Column="9" />
+      <File FileName="Assets/FollowPlayer.cs" Line="17" Column="11" />
+      <File FileName="Assets/SpawnPlayer.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
