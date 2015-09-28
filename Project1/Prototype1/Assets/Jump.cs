@@ -49,7 +49,10 @@ public class Jump : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.Space) && grounded){
 			//Debug.Log ("jumped!!!");
 			start = rb.position;
-			rb.velocity += new Vector2(0, jumpStrength);
+			if(Input.GetKey(KeyCode.DownArrow))
+				rb.position+=new Vector2(0,-5.0f);
+			else
+				rb.velocity += new Vector2(0, jumpStrength);
 			rotations = 0;
 			//Debug.Log(rb.velocity);
 			launch();
@@ -80,41 +83,6 @@ public class Jump : MonoBehaviour {
 			rotations = 0;
 			rb.transform.rotation = new Quaternion(0, 0, 0, 0);
 		}
-
-		/*
-		// Causes the player to rotate during the jump
-		if ((rb.position.y > ((.25 * (jumpStrength / 3)) + start.y)) && !falling && rotations < 1) {// first part of the jump
-			rb.transform.Rotate (0, 0, 60); // rotates 60 degrees
-			rotations++; // marks the rotation the player is on
-			Debug.Log ("First Rotation" + rb.rotation);
-		} else if ((rb.position.y > ((.50 * (jumpStrength / 3)) + start.y)) && !falling && rotations < 2) {// second part of the jump
-			rb.transform.Rotate (0, 0, 60); // rotates 60 degrees
-			rotations++; // marks the rotation the player is on
-			Debug.Log ("Second Rotation" + rb.rotation);
-		} else if ((rb.position.y > ((.85 * (jumpStrength / 3)) + start.y)) && !falling && rotations < 3) {// third part of the jump
-			rb.transform.Rotate (0, 0, 60); // rotates 60 degrees
-			rotations++; // marks the rotation the player is on
-			Debug.Log ("Third Rotation" + rb.rotation);
-		} else if (!falling && rotations < 4) {// checks to see if the player is falling yet
-			if (rb.velocity.y < 0) {
-				falling = true;
-			}
-		} else if ((rb.position.y < ((.85 * (jumpStrength / 3)) + start.y)) && falling && rotations < 4) {// fourth part of the jump
-			rb.transform.Rotate (0, 0, 60); // rotates 60 degrees
-			rotations++; // marks the rotation the player is on
-			Debug.Log ("Fourth Rotation" + rb.rotation);
-		} else if ((rb.position.y < ((.50 * (jumpStrength / 3)) + start.y)) && falling && rotations < 5) {// fifth part of the jump
-			rb.transform.Rotate (0, 0, 60); // rotates 60 degrees
-			rotations++; // marks the rotation the player is on
-			Debug.Log ("Fifth Rotation" + rb.rotation);
-		} else if ((rb.position.y < ((.25 * (jumpStrength / 3)) + start.y)) && falling && rotations < 6) {// sixth part of the jump
-			rb.transform.Rotate (0, 0, 60); // rotates 60 degrees
-			rotations++; // marks the rotation the player is on
-			Debug.Log ("Sixth Rotation" + rb.rotation);
-		} else if (grounded) {// if the player is done jumping, reset their rotation
-			rb.transform.rotation = new Quaternion(0, 0, 0, 0);
-		}
-		*/
 
 		if(rb.velocity.y < -maxFallSpeed){
 			rb.velocity = new Vector2(rb.velocity.x, -maxFallSpeed);

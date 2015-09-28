@@ -8,6 +8,11 @@ public class moveLeftOrRight : MonoBehaviour {
 
 	private Rigidbody2D rb;
 
+	void Awake () {
+		rb = GetComponent<Rigidbody2D>();
+		dir = 1;
+	}
+
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
