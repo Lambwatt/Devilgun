@@ -8,7 +8,7 @@ public class generateLevel : MonoBehaviour {
 	int x;
 	int y = 0;
 
-	string[] rooms = new string[5]{"Room0", "Room1", "Room2a", "Room3", "Room2b"};
+	string[] rooms = new string[5]{"Room0", "Room1", "Room2b", "Room3", "Room2a"};
 
 	// Use this for initialization
 	void Start () {
@@ -21,6 +21,7 @@ public class generateLevel : MonoBehaviour {
 		//Debug.Log ("starting at ["+x+","+y+"]");
 		int n;
 		bool valid;
+		bool wentDown = false;;
 		while(y < 4){
 			do{
 				n = (int)Mathf.Floor(Random.value*5);
@@ -28,7 +29,7 @@ public class generateLevel : MonoBehaviour {
 				if(n == 0 || n == 1){
 					if(x-1>=0 && level[x-1,y] == 0){
 
-						//Debug.Log ("left");
+						Debug.Log ("left");
 						//Debug.Log("nextSlot = "+level[x-1,y]);
 						x-=1;
 
@@ -36,7 +37,7 @@ public class generateLevel : MonoBehaviour {
 					}
 				}else if(n == 2 || n == 3){
 					if(x+1<4 && level[x+1,y] == 0){
-						//Debug.Log ("right");
+						Debug.Log ("right");
 						//Debug.Log("nextSlot = "+level[x+1,y]);
 						x+=1;
 
@@ -45,27 +46,45 @@ public class generateLevel : MonoBehaviour {
 				}else{
 					if(y+1<5){
 						y+=1;
-						//Debug.Log ("down");
+						Debug.Log ("down");
 						valid = true;
 					}
 				}
 			}while(!valid);
 
 			if(n<4){
-				float fl = Mathf.Floor(Random.value*3)+1;
+				float fl;
+				if(wentDown){
+					fl = Mathf.Floor(Random.value*2)+2;//if went down, must have enterance in the top in current tile
+					Debug.Log ("caught down. set room to "+fl);
+					wentDown = false;
+				}
+				else fl = Mathf.Floor(Random.value*3)+1;
 				level[last_x, last_y] = (int)fl;
 				//Debug.Log(fl+":"+level[last_x, last_y]);
 				last_x = x;
 
 			}else{
-				level[last_x, last_y] = 4;
+				if(wentDown)
+					level[last_x, last_y] = 2;
+				else
+					level[last_x, last_y] = 4;
+				wentDown = true;
 				last_y = y;
 			}
 
-			level[start_x, 0] = 1;
-			//level[last_x, last_y] = 1;
-
 		}
+
+		int numNonZeroRooms = 0;
+		for(int i = 0; i<4; i++){
+			//Debug.Log ("level["+i+", 0] = "+level[i, 0])
+			if(level[i, 0]!=0)
+				numNonZeroRooms++;
+		}
+		
+		Debug.Log("sum = "+numNonZeroRooms);
+		if(numNonZeroRooms == 1) level[start_x, 0] = 2;
+		else level[start_x, 0] = 1;
 
 
 		for(int w = 0; w < 4; w++){
