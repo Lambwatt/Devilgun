@@ -101,20 +101,20 @@ public class generateLevel : MonoBehaviour {
 		//Debug.Log (spawner);
 		spawner.spawn();
 
-//		for( w = -1; w<100; w++){
-//			Instantiate(Resources.Load("block"), new Vector3(w*10, 0), Quaternion.identity);
-//		}
-//
-//		for( w = -1; w<100; w++){
-//			Instantiate(Resources.Load("block"), new Vector3(w*10, -80*4), Quaternion.identity);
-//		}
-//
-//		for( h = -1; w<100; w++){
-//			Instantiate(Resources.Load("block"), new Vector3(w*10, 0), Quaternion.identity);
-//		}
-//		
-//		for( w = -1; w<100; w++){
-//			Instantiate(Resources.Load("block"), new Vector3(w*10, -80*4), Quaternion.identity);
-//		}
+		for( int w = -1; w<=40; w++){
+			Instantiate(Resources.Load("block"), new Vector3(w*10, 10), Quaternion.identity);
+		}
+
+		for( int w = -1; w<=40; w++){
+			Instantiate(Resources.Load("block"), new Vector3(w*10, -80*4), Quaternion.identity);
+		}
+
+		for( int h = 0; h<32; h++){
+			Instantiate(Resources.Load("block"), new Vector3(-10, h*-10), Quaternion.identity);
+		}
+
+		for( int h = 0; h<32; h++){
+			Instantiate(Resources.Load("block"), new Vector3(400, h*-10), Quaternion.identity);
+		}
 	}
 }
