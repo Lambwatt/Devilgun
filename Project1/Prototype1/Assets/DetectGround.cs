@@ -20,6 +20,16 @@ public class DetectGround : MonoBehaviour {
 		jump.land();
 	}
 
+	void OnCollisionStay2D(){
+		Debug.Log ("hit?");
+		jump.land();
+	}
+	
+	void OnCollisionEnter2D(){
+		Debug.Log ("hit?");
+		jump.land();
+	}
+
 //	void OnTriggerExit2D(){
 //		Debug.Log ("hit?");
 //		jump.launch();

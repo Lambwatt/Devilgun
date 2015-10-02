@@ -27,7 +27,7 @@ public class Jump : MonoBehaviour {
 
 	//Called at initialization of game
 	public void land(){
-		//Debug.Log("landing");
+		Debug.Log("landing");
 		//if(!jumping){
 		grounded = true;
 		//Debug.Log ("Landed");
@@ -50,7 +50,7 @@ public class Jump : MonoBehaviour {
 			//Debug.Log ("jumped!!!");
 			start = rb.position;
 			if(Input.GetKey(KeyCode.DownArrow))
-				rb.position+=new Vector2(0,-5.0f);
+				rb.position+=new Vector2(0,-0.5f);
 			else
 				rb.velocity += new Vector2(0, jumpStrength);
 			rotations = 0;
@@ -83,8 +83,10 @@ public class Jump : MonoBehaviour {
 			rotations = 0;
 			rb.transform.rotation = new Quaternion(0, 0, 0, 0);
 		}
-
+		
 		if(rb.velocity.y < -maxFallSpeed){
+			Debug.Log(rb.velocity.y+" < "+(-maxFallSpeed)+": "+(rb.velocity.y < -maxFallSpeed));
+			//Debug.Log ("Ran despite falsity?");
 			rb.velocity = new Vector2(rb.velocity.x, -maxFallSpeed);
 		}
 		
