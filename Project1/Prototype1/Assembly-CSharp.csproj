@@ -45,14 +45,16 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\DetectGround.cs" />
-     <Compile Include="Assets\FollowPlayer.cs" />
-     <Compile Include="Assets\Jump.cs" />
-     <Compile Include="Assets\NPCMovement.cs" />
-     <Compile Include="Assets\SpawnPlayer.cs" />
-     <Compile Include="Assets\generateFloor.cs" />
-     <Compile Include="Assets\generateLevel.cs" />
-     <Compile Include="Assets\moveLeftOrRight.cs" />
+     <Compile Include="Assets\OldScripts\ConfirmCollisionBehaviour.cs" />
+     <Compile Include="Assets\OldScripts\DetectGround.cs" />
+     <Compile Include="Assets\OldScripts\FollowPlayer.cs" />
+     <Compile Include="Assets\OldScripts\Jump.cs" />
+     <Compile Include="Assets\OldScripts\NPCMovement.cs" />
+     <Compile Include="Assets\OldScripts\SpawnPlayer.cs" />
+     <Compile Include="Assets\OldScripts\generateFloor.cs" />
+     <Compile Include="Assets\OldScripts\generateLevel.cs" />
+     <Compile Include="Assets\OldScripts\moveLeftOrRight.cs" />
+     <Compile Include="Assets\OldScripts\platformColliderController.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
