@@ -45,6 +45,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\AssembleLevel.cs" />
+     <Compile Include="Assets\Blueprint.cs" />
      <Compile Include="Assets\OldScripts\ConfirmCollisionBehaviour.cs" />
      <Compile Include="Assets\OldScripts\DetectGround.cs" />
      <Compile Include="Assets\OldScripts\FollowPlayer.cs" />
