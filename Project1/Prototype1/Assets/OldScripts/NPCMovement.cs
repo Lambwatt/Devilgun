@@ -9,7 +9,7 @@ public class NPCMovement : MonoBehaviour {
 	public float delay = 5f;
 	public type movementType;
 	public enum type { Wander, SetTasks, RandomTasks, Break }
-
+	
 	private CharacterController controller;
 	private Vector3 targetRotation;
 	private float direction;
@@ -20,59 +20,59 @@ public class NPCMovement : MonoBehaviour {
 	private float arrivalTime;
 	private Vector3 target;
 	private bool hold = true;
-
-
+	
+	
 	// Use this for initialization
 	void Start () {
 		controller = GetComponent<CharacterController>();
-
-
+		
+		
 		foreach (Transform child in transform)
 			if(child.tag == "Waypoint")
 				waypoints.Add (child);
 		
 		foreach(Transform waypoint in waypoints)
 			waypoint.parent = null;
-
+		
 		target = waypoints [currentWp].position - transform.position;
-		Debug.Log (waypoints.Count);
-
+		//Debug.Log (waypoints.Count);
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		Vector3 forward = transform.TransformDirection (1, 0, 0);
-		Debug.Log (currentWp);
-
+		Vector3 forward = transform.TransformDirection (Vector3.forward);
+		//Debug.Log (currentWp);
+		
 		if (movementType == type.Wander && hold) {
 			InvokeRepeating ("NpcWander", 0f, 2f);
 			hold = false;
 		} else if (movementType == type.Wander) {
-			controller.SimpleMove (forward);
+			controller.SimpleMove (forward * speed);
 		}else if (movementType != type.Wander) {
 			CancelInvoke();
 			WalkToWaypoints ();
 			hold = true;
 		}
-
+		
 	}
-
-
+	
+	
 	void FixedUpdate(){
 		//Debug.Log (Time.time);
 	}
-
+	
 	//Makes the npc walk to the waypoints
 	void WalkToWaypoints(){
-
+		
 		if (waypoints.Count > 0) {
 			if (!arrived) {
-				if (Vector3.Distance (transform.position, waypoints [currentWp].position) < 0.3f) {
+				if (Vector3.Distance (transform.position, waypoints [currentWp].position) < 0.5f) {
 					arrivalTime = Time.time;
 					arrived = true;
 				} 
 				//Moves to the waypoint
-				controller.SimpleMove (target);
+				controller.SimpleMove ((target * Time.deltaTime) * speed);
 				//Debug.Log (target);
 			} else {
 				if (Time.time > arrivalTime + delay) {
@@ -88,7 +88,7 @@ public class NPCMovement : MonoBehaviour {
 		direction = Random.Range (0, 360);
 		transform.eulerAngles = new Vector3 (0, direction, 0);
 	}
-/*
+	/*
 	public bool StartAndStop(bool stop){
 		stillWalking = stop;
 		return stillWalking;
@@ -107,7 +107,7 @@ public class NPCMovement : MonoBehaviour {
 		}
 		target = waypoints [currentWp].position - transform.position;
 	}
-
+	
 	//draw gizmo spheres for waypoints
 	void OnDrawGizmos()
 	{
@@ -118,5 +118,6 @@ public class NPCMovement : MonoBehaviour {
 				Gizmos.DrawSphere(child.position, .3f);
 		}
 	}
-
+	
 }
+
