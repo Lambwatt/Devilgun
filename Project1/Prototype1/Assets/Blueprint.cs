@@ -9,7 +9,7 @@ public class RoomSpec{
 	private RoomType typ = RoomType.Normal;
 
 	public RoomSpec(){
-		Debug.Log("Ran Default Constructor");
+		//Debug.Log("Ran Default Constructor");
 	}
 
 	public void addTopDoor(){
