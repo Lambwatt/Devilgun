@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class RoomAssembler : MonoBehaviour {
 
@@ -15,15 +16,19 @@ public class RoomAssembler : MonoBehaviour {
 	}
 
 	void assembleRoom(Room room){
+		string input = "";
 		for(int i = 0; i<room.width; i++){
 			for(int j = 0; j<room.height; j++){
-				Debug.Log ("Test result: "+(room.tiles[i,j]>=0));
-				if(room.tiles[i,j]>=0){
-					Debug.Log (tiles[room.tiles[i,j]]);
-					Instantiate(tiles[room.tiles[i,j]], new Vector3(.32f*(float)i, .32f*(float)j), Quaternion.identity);
+				//Debug.Log ("Test result: "+(room.tiles[i,j]>=0));
+				input+=room.tiles[j,i]+",";
+				if(room.tiles[j,i]>=0){
+					//Debug.Log (tiles[room.tiles[i,j]]);
+					Instantiate(tiles[room.tiles[j,i]], new Vector3(.32f*(float)i, .32f*(float)(room.height-j)), Quaternion.identity);
 				}
 			}
+			input+="\n";
 		}
+		Debug.Log (input);
 	}
 	
 //	// Update is called once per frame
