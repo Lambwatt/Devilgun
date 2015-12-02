@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	public float walkSpeed = 4f;
 	public float runSpeed = 8f;
-	public float jumpForce = 20f;
+	public Vector3 jumpForce = new Vector3 (0, 13, 0);
 
 	private bool walk = true;
 	private bool grounded = true;
@@ -72,11 +72,21 @@ public class PlayerMovement : MonoBehaviour {
 	void Jump(){
 		Vector3 up = new Vector3 (0, 1, 0);
 
-		if (CrossPlatformInputManager.GetButton ("Jump")) {
-			move.AddForce((up *jumpForce) , ForceMode.Impulse);
+		if (CrossPlatformInputManager.GetButton ("Jump") && grounded) {
+			//move.AddForce((up *jumpForce) , ForceMode.Impulse);
+
+			GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<Rigidbody>().velocity.x, 0f, GetComponent<Rigidbody>().velocity.z);
+			GetComponent<Rigidbody>().AddRelativeForce (jumpForce, ForceMode.Impulse);
 		}
 
 	}
 
+	public void OnGround(){
+		grounded = true;
+	}
+
+	public void OffGround(){
+		grounded = false;
+	}
 
 }
