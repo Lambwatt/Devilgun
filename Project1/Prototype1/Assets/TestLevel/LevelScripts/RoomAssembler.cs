@@ -19,10 +19,8 @@ public class RoomAssembler : MonoBehaviour {
 		string input = "";
 		for(int i = 0; i<room.width; i++){
 			for(int j = 0; j<room.height; j++){
-				//Debug.Log ("Test result: "+(room.tiles[i,j]>=0));
 				input+=room.tiles[j,i]+",";
 				if(room.tiles[j,i]>=0){
-					//Debug.Log (tiles[room.tiles[i,j]]);
 					Instantiate(tiles[room.tiles[j,i]], new Vector3(.32f*(float)i, .32f*(float)(room.height-j)), Quaternion.identity);
 				}
 			}

@@ -22,7 +22,6 @@ public class RoomImporter{
 
 	void Start(){
 		room = loadRoom("Assets/TestLevel/DemoLevel.oel");
-		//Debug.Log(room.tiles);
 	}
 
 	public Room loadRoom(string path){
@@ -37,16 +36,14 @@ public class RoomImporter{
 
 		char[] delimiters = {',', '\n'};
 		XmlNode node = doc.SelectSingleNode("level");
-//		Debug.Log (node);
+
 		XmlNode n = node.SelectSingleNode("Tiles");
-//		Debug.Log(n);
-//		Debug.Log(n.InnerText);
+
 		string tileString = node.SelectSingleNode("Tiles").InnerText;
 		string[] tiles = tileString.Split(delimiters);
 
 		for(int i = 0; i<room.width; i++){
 			for(int j = 0; j<room.height; j++){
-				//Debug.Log ((i*room.width+j)+", "+tiles[i*room.width+j]);
 				room.tiles[i, j] = int.Parse(tiles[i*room.width+j]);
 			}
 		}

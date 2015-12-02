@@ -60,6 +60,7 @@
      <Compile Include="Assets\OldScripts\moveLeftOrRight.cs" />
      <Compile Include="Assets\OldScripts\platformColliderController.cs" />
      <Compile Include="Assets\TestLevel\LevelScripts\RoomAssembler.cs" />
+     <Compile Include="Assets\TestLevel\LevelScripts\RoomCollector.cs" />
      <Compile Include="Assets\TestLevel\LevelScripts\RoomImporter.cs" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
  <Reference Include="UnityEngine.UI">
